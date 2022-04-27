@@ -1,0 +1,73 @@
+package elisaverza;
+
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.LinkedList;
+import java.util.List;
+
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.Parameterized;
+import org.junit.runners.Parameterized.Parameters;
+
+import junit.framework.TestCase;
+
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.serializer.SerializerFeature;
+
+@RunWith(value = Parameterized.class)
+public class ListTest extends TestCase {
+    
+    private String expected;
+    private static List<Object> list;
+    private static long firstNum;
+    private static long secondNum;
+
+    @Before
+    public void configure(){
+        list = new LinkedList<Object>();
+        list.add(firstNum);
+        list.add(secondNum);
+        return;
+    }
+
+    @Parameters
+    public static Collection<Object[]> getTextParameters(){
+        
+        return Arrays.asList(new Object[] []{
+            {23L, 45L, "[23L,45L]", list},
+            {33L, 44L, "[33L,44L]", list}
+        });
+    }
+
+    public ListTest(long firstNum, long secondNum, String expected, List<Object> list){
+        ListTest.list = list;
+        ListTest.firstNum = firstNum;
+        ListTest.secondNum = secondNum;
+        this.expected = expected;
+    }
+
+    @Test
+    public void test_null() throws Exception {        
+        Assert.assertEquals(expected, JSON.toJSONString(list, SerializerFeature.WriteClassName));
+    }
+
+
+    //TODO: Non ho capito
+
+    public static class VO {
+
+        private Object value;
+
+        public Object getValue() {
+            return value;
+        }
+
+        public void setValue(Object value) {
+            this.value = value;
+        }
+
+    }
+}
