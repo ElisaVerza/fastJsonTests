@@ -22,6 +22,8 @@ public class SerializeWriterTest extends TestCase {
         StringWriter writer = new StringWriter();
         out.writeTo(writer);
         Assert.assertEquals("abc", writer.toString());
+        out.flush();
+        out.close(); 
     }
 
     public void test_1() throws Exception {
@@ -37,6 +39,9 @@ public class SerializeWriterTest extends TestCase {
         Assert.assertEquals("abc", writer.toString());
 
         out.expandCapacity(128);
+        out.flush();
+        out.close(); 
+
     }
 
     public void test_12() throws Exception {
@@ -63,36 +68,48 @@ public class SerializeWriterTest extends TestCase {
         SerializeWriter out = new SerializeWriter(1);
         out.writeInt(Integer.MIN_VALUE);
         Assert.assertEquals(Integer.toString(Integer.MIN_VALUE), out.toString());
+        out.flush();
+        out.close(); 
     }
 
     public void test_13_long() throws Exception {
         SerializeWriter out = new SerializeWriter(1);
         out.writeLong(Long.MIN_VALUE);
         Assert.assertEquals(Long.toString(Long.MIN_VALUE), out.toString());
+        out.flush();
+        out.close(); 
     }
 
     public void test_13_long_browser() throws Exception {
         SerializeWriter out = new SerializeWriter(SerializerFeature.BrowserCompatible);
         out.writeLong(Long.MIN_VALUE + 1);
         Assert.assertEquals("\"" + Long.toString(Long.MIN_VALUE + 1) + "\"", out.toString());
+        out.flush();
+        out.close(); 
     }
 
     public void test_13_long_browser2() throws Exception {
         SerializeWriter out = new SerializeWriter(SerializerFeature.BrowserCompatible);
         out.writeLong(Long.MIN_VALUE);
         Assert.assertEquals("\"" + Long.toString(Long.MIN_VALUE) + "\"", out.toString());
+        out.flush();
+        out.close(); 
     }
 
     public void test_14() throws Exception {
         SerializeWriter out = new SerializeWriter(1);
         out.writeInt(Integer.MAX_VALUE);
         Assert.assertEquals(Integer.toString(Integer.MAX_VALUE), out.toString());
+        out.flush();
+        out.close(); 
     }
 
     public void test_14_long() throws Exception {
         SerializeWriter out = new SerializeWriter(1);
         out.writeLong(Long.MAX_VALUE);
         Assert.assertEquals(Long.toString(Long.MAX_VALUE), out.toString());
+        out.flush();
+        out.close(); 
     }
 
     public void test_15() throws Exception {
@@ -100,6 +117,9 @@ public class SerializeWriterTest extends TestCase {
         out.writeInt(Integer.MAX_VALUE);
         out.write(',');
         Assert.assertEquals(Integer.toString(Integer.MAX_VALUE) + ",", out.toString());
+        out.flush();
+        out.close(); 
+
     }
 
     public void test_15_long() throws Exception {
@@ -107,6 +127,9 @@ public class SerializeWriterTest extends TestCase {
         out.writeLong(Long.MAX_VALUE);
         out.write(',');
         Assert.assertEquals(Long.toString(Long.MAX_VALUE) + ",", out.toString());
+        out.flush();
+        out.close(); 
+
     }
 
     public void test_16() throws Exception {
@@ -114,6 +137,9 @@ public class SerializeWriterTest extends TestCase {
         out.writeInt(Integer.MIN_VALUE);
         out.write(',');
         Assert.assertEquals(Integer.toString(Integer.MIN_VALUE) + ",", out.toString());
+        out.flush();
+        out.close(); 
+
     }
 
     public void test_16_long() throws Exception {
@@ -121,6 +147,9 @@ public class SerializeWriterTest extends TestCase {
         out.writeLong(Long.MIN_VALUE);
         out.write(',');
         Assert.assertEquals(Long.toString(Long.MIN_VALUE) + ",", out.toString());
+        out.flush();
+        out.close(); 
+
     }
 
     public void test_16_long_browser() throws Exception {
@@ -128,6 +157,8 @@ public class SerializeWriterTest extends TestCase {
         out.writeLong(Long.MIN_VALUE + 1);
         out.write(',');
         Assert.assertEquals("\"" + Long.toString(Long.MIN_VALUE + 1) + "\",", out.toString());
+        out.flush();
+        out.close(); 
     }
 
     public void test_16_long_browser2() throws Exception {
@@ -135,36 +166,48 @@ public class SerializeWriterTest extends TestCase {
         out.writeLong(Long.MIN_VALUE);
         out.write(',');
         Assert.assertEquals("\"" + Long.toString(Long.MIN_VALUE) + "\",", out.toString());
+        out.flush();
+        out.close(); 
     }
 
     public void test_17() throws Exception {
         SerializeWriter out = new SerializeWriter(1);
         out.append(null);
         Assert.assertEquals("null", out.toString());
+        out.flush();
+        out.close(); 
     }
 
     public void test_18() throws Exception {
         SerializeWriter out = new SerializeWriter(1);
         out.append(null, 0, 4);
         Assert.assertEquals("null", out.toString());
+        out.flush();
+        out.close(); 
     }
 
     public void test_19() throws Exception {
         SerializeWriter out = new SerializeWriter(1);
         out.append("abcd", 0, 4);
         Assert.assertEquals("abcd", out.toString());
+        out.flush();
+        out.close(); 
     }
 
     public void test_20() throws Exception {
         SerializeWriter out = new SerializeWriter(1);
         out.write("abcd".toCharArray(), 0, 4);
         Assert.assertEquals("abcd", out.toString());
+        out.flush();
+        out.close(); 
     }
 
     public void test_error_0() throws Exception {
         Exception error = null;
         try {
-            new SerializeWriter(-1);
+            SerializeWriter out = new SerializeWriter(-1);
+            out.flush();
+            out.close();
         } catch (IllegalArgumentException ex) {
             error = ex;
         }
@@ -176,6 +219,8 @@ public class SerializeWriterTest extends TestCase {
         try {
             SerializeWriter out = new SerializeWriter(16);
             out.write(new char[0], -1, 0);
+            out.flush();
+            out.close();     
         } catch (IndexOutOfBoundsException ex) {
             error = ex;
         }
@@ -187,6 +232,8 @@ public class SerializeWriterTest extends TestCase {
         try {
             SerializeWriter out = new SerializeWriter(16);
             out.write(new char[0], 2, 0);
+            out.flush();
+            out.close();     
         } catch (IndexOutOfBoundsException ex) {
             error = ex;
         }
@@ -198,6 +245,8 @@ public class SerializeWriterTest extends TestCase {
         try {
             SerializeWriter out = new SerializeWriter(16);
             out.write(new char[0], 0, -1);
+            out.flush();
+            out.close();     
         } catch (IndexOutOfBoundsException ex) {
             error = ex;
         }
@@ -209,6 +258,8 @@ public class SerializeWriterTest extends TestCase {
         try {
             SerializeWriter out = new SerializeWriter(16);
             out.write(new char[0], 0, 1);
+            out.flush();
+            out.close();     
         } catch (IndexOutOfBoundsException ex) {
             error = ex;
         }
@@ -220,6 +271,9 @@ public class SerializeWriterTest extends TestCase {
         try {
             SerializeWriter out = new SerializeWriter(16);
             out.write("abcdefg".toCharArray(), 1, 1 + Integer.MAX_VALUE);
+            out.flush();
+            out.close(); 
+    
         } catch (IndexOutOfBoundsException ex) {
             error = ex;
         }
