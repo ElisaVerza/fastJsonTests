@@ -21,9 +21,9 @@ import com.alibaba.fastjson.serializer.SerializerFeature;
 public class ListTest extends TestCase {
     
     private String expected;
-    private static List<Object> list;
-    private static long firstNum;
-    private static long secondNum;
+    private List<Object> list;
+    private long firstNum;
+    private long secondNum;
 
     @Before
     public void configure(){
@@ -37,15 +37,14 @@ public class ListTest extends TestCase {
     public static Collection<Object[]> getTextParameters(){
         
         return Arrays.asList(new Object[] []{
-            {23L, 45L, "[23L,45L]", list},
-            {33L, 44L, "[33L,44L]", list}
+            {23L, 45L, "[23L,45L]"},
+            {33L, 44L, "[33L,44L]"}
         });
     }
 
-    public ListTest(long firstNum, long secondNum, String expected, List<Object> list){
-        ListTest.list = list;
-        ListTest.firstNum = firstNum;
-        ListTest.secondNum = secondNum;
+    public ListTest(long firstNum, long secondNum, String expected){
+        this.firstNum = firstNum;
+        this.secondNum = secondNum;
         this.expected = expected;
     }
 
