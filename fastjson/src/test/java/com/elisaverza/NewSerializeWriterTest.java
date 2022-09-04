@@ -9,14 +9,11 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import org.junit.After;
-import org.junit.Assert;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
-
-import junitparams.Parameters;
+import org.junit.runners.Parameterized.Parameters;
 
 import com.alibaba.fastjson.serializer.SerializeWriter;
 
@@ -25,27 +22,8 @@ public class NewSerializeWriterTest {
     private String charValue;
     private Integer intValue;
     private Long longValue;
+    private Boolean intFirst;
     private String expected;
-
-    public NewSerializeWriterTest(String valueOne, String valueTwo, String expected){
-        this.charValue = charValue;
-        this.intValue = intValue;
-        this.longValue = longValue;
-        this.expected = expected;
-    }
-
-    private SerializeWriter sw;
-	@Before
-    public void configure(){
-        sw = new SerializeWriter();
-    }
-
-    @After
-    public void closure(){
-        sw.flush();
-        sw.close();
-    }
-
 
     @Parameters
     public static Collection<Object[]> getTestParameter(){
@@ -63,29 +41,64 @@ public class NewSerializeWriterTest {
             { 0, 345L}, 
             { 1, -1L}, 
         }).collect(Collectors.toMap(data -> (Integer) data[0], data -> (Long) data[1]));
-
         return Arrays.asList(new Object[][]{
-            {charParams.get(0)+intParams.get(0), charParams.get(0), intParams.get(0), null},
-            {charParams.get(0)+intParams.get(0)+longParams.get(0), charParams.get(0), intParams.get(0), longParams.get(0)},
-            {intParams.get(1), null, intParams.get(1), null},
-            {intParams.get(1)+charParams.get(1), charParams.get(1), intParams.get(1), null},
-            {longParams.get(1), null, null, longParams.get(1)},
-            {longParams.get(1)+charParams.get(1), charParams.get(1), null, longParams.get(1)},
+            {charParams.get(0)+intParams.get(0).toString(), charParams.get(0), intParams.get(0), null, false},
+            {charParams.get(0)+intParams.get(0)+longParams.get(0).toString(), charParams.get(0), intParams.get(0), longParams.get(0), false},
+            {intParams.get(1).toString(), null, intParams.get(1), null, false},
+            {intParams.get(1)+charParams.get(1), charParams.get(1), intParams.get(1), null, true},
+            {longParams.get(1).toString(), null, null, longParams.get(1), false},
+            {longParams.get(1)+charParams.get(1).toString(), charParams.get(1), null, longParams.get(1), false},
         });
+    }
+
+
+    public NewSerializeWriterTest(String expected, String charValue, Integer intValue, Long longValue, Boolean intFirst){
+        this.charValue = charValue;
+        this.intValue = intValue;
+        this.longValue = longValue;
+        this.intFirst = intFirst;
+        this.expected = expected;
+    }
+
+    private SerializeWriter sw;
+
+	@Before
+    public void configure(){
+        sw = new SerializeWriter();
+    }
+
+    @After
+    public void closure(){
+        sw.flush();
+        sw.close();
     }
 
     @Test
     public void test1(){
-        if(charValue!=null && intValue!=null){
-            sw.append(charValue);
+
+        if(intValue!=null && !intFirst){
+            if(charValue!=null){
+                sw.append(charValue);
+            }
             sw.writeInt(intValue);
-            assertEquals(expected, sw.toString());
+            
             if(longValue!=null){
                 sw.writeLong(longValue);
-                assertEquals(expected, sw.toString());
             }
         }
-    }
+        else if(longValue!=null){
+            sw.writeLong(longValue);
+            if(charValue!=null){
+                sw.write(charValue);
+            }
+        }
+        else if(intFirst){
+            sw.writeInt(intValue);
+            sw.write(charValue);
+        }
+        assertEquals(expected, sw.toString());
 
+    }
+    
     
 }
