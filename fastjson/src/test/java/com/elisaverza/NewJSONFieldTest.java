@@ -37,7 +37,6 @@ public class NewJSONFieldTest {
         JSONObject obj = new JSONObject();
 
         obj.put("id", 123);
-        //obj.put("name", "xx");
 
         return Arrays.asList(new Object[][]{
             {obj.toString(), "xx", 123}
