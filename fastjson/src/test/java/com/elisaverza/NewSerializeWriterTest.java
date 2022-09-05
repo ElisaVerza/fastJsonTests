@@ -25,6 +25,14 @@ public class NewSerializeWriterTest {
     private Boolean intFirst;
     private String expected;
 
+    public NewSerializeWriterTest(String expected, String charValue, Integer intValue, Long longValue, Boolean intFirst){
+        this.charValue = charValue;
+        this.intValue = intValue;
+        this.longValue = longValue;
+        this.intFirst = intFirst;
+        this.expected = expected;
+    }
+
     @Parameters
     public static Collection<Object[]> getTestParameter(){
         Map<Integer, String> charParams = Stream.of(new Object[][] { 
@@ -49,15 +57,6 @@ public class NewSerializeWriterTest {
             {longParams.get(1).toString(), null, null, longParams.get(1), false},
             {longParams.get(1)+charParams.get(1).toString(), charParams.get(1), null, longParams.get(1), false},
         });
-    }
-
-
-    public NewSerializeWriterTest(String expected, String charValue, Integer intValue, Long longValue, Boolean intFirst){
-        this.charValue = charValue;
-        this.intValue = intValue;
-        this.longValue = longValue;
-        this.intFirst = intFirst;
-        this.expected = expected;
     }
 
     private SerializeWriter sw;

@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="com.elisaverza.NewSerializeWriterTest" time="0.018" tests="6" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="com.elisaverza.NewSerializeWriterTest" time="0.01" tests="6" errors="0" skipped="0" failures="0">
   <properties>
     <property name="sun.desktop" value="gnome"/>
     <property name="awt.toolkit" value="sun.awt.X11.XToolkit"/>
     <property name="java.specification.version" value="11"/>
     <property name="sun.cpu.isalist" value=""/>
     <property name="sun.jnu.encoding" value="UTF-8"/>
-    <property name="java.class.path" value="/home/ella/ISW2/fastJsonTests/fastjson/target/test-classes:/home/ella/ISW2/fastJsonTests/fastjson/target/classes:/home/ella/.m2/repository/junit/junit/4.11/junit-4.11.jar:/home/ella/.m2/repository/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar:/home/ella/.m2/repository/pl/pragmatists/JUnitParams/1.0.5/JUnitParams-1.0.5.jar:/home/ella/.m2/repository/com/alibaba/fastjson/1.2.79/fastjson-1.2.79.jar:"/>
+    <property name="java.class.path" value="/home/ella/ISW2/fastJsonTests/fastjson/target/test-classes:/home/ella/ISW2/fastJsonTests/fastjson/target/classes:/home/ella/.m2/repository/junit/junit/4.11/junit-4.11.jar:/home/ella/.m2/repository/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar:/home/ella/.m2/repository/pl/pragmatists/JUnitParams/1.0.5/JUnitParams-1.0.5.jar:/home/ella/.m2/repository/com/alibaba/fastjson/1.2.79/fastjson-1.2.79.jar:/home/ella/.m2/repository/org/json/json/20220320/json-20220320.jar:"/>
     <property name="java.vm.vendor" value="Ubuntu"/>
     <property name="sun.arch.data.model" value="64"/>
     <property name="java.vendor.url" value="https://ubuntu.com/"/>
@@ -16,9 +16,9 @@
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="user.country" value="IT"/>
     <property name="sun.boot.library.path" value="/usr/lib/jvm/java-11-openjdk-amd64/lib"/>
-    <property name="sun.java.command" value="/home/ella/ISW2/fastJsonTests/fastjson/target/surefire/surefirebooter1403858077753778943.jar /home/ella/ISW2/fastJsonTests/fastjson/target/surefire 2022-09-04T17-52-00_441-jvmRun1 surefire5978675076634253804tmp surefire_04576000768364245351tmp"/>
+    <property name="sun.java.command" value="/home/ella/ISW2/fastJsonTests/fastjson/target/surefire/surefirebooter9287810488790002504.jar /home/ella/ISW2/fastJsonTests/fastjson/target/surefire 2022-09-05T11-46-19_580-jvmRun1 surefire9385603729547683029tmp surefire_012917595344434280508tmp"/>
     <property name="jdk.debug" value="release"/>
-    <property name="surefire.test.class.path" value="/home/ella/ISW2/fastJsonTests/fastjson/target/test-classes:/home/ella/ISW2/fastJsonTests/fastjson/target/classes:/home/ella/.m2/repository/junit/junit/4.11/junit-4.11.jar:/home/ella/.m2/repository/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar:/home/ella/.m2/repository/pl/pragmatists/JUnitParams/1.0.5/JUnitParams-1.0.5.jar:/home/ella/.m2/repository/com/alibaba/fastjson/1.2.79/fastjson-1.2.79.jar:"/>
+    <property name="surefire.test.class.path" value="/home/ella/ISW2/fastJsonTests/fastjson/target/test-classes:/home/ella/ISW2/fastJsonTests/fastjson/target/classes:/home/ella/.m2/repository/junit/junit/4.11/junit-4.11.jar:/home/ella/.m2/repository/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar:/home/ella/.m2/repository/pl/pragmatists/JUnitParams/1.0.5/JUnitParams-1.0.5.jar:/home/ella/.m2/repository/com/alibaba/fastjson/1.2.79/fastjson-1.2.79.jar:/home/ella/.m2/repository/org/json/json/20220320/json-20220320.jar:"/>
     <property name="sun.cpu.endian" value="little"/>
     <property name="user.home" value="/home/ella"/>
     <property name="user.language" value="it"/>
@@ -32,7 +32,7 @@
     <property name="java.specification.name" value="Java Platform API Specification"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.awt.graphicsenv" value="sun.awt.X11GraphicsEnvironment"/>
-    <property name="surefire.real.class.path" value="/home/ella/ISW2/fastJsonTests/fastjson/target/surefire/surefirebooter1403858077753778943.jar"/>
+    <property name="surefire.real.class.path" value="/home/ella/ISW2/fastJsonTests/fastjson/target/surefire/surefirebooter9287810488790002504.jar"/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="java.runtime.version" value="11.0.16+8-post-Ubuntu-0ubuntu120.04"/>
     <property name="user.name" value="ella"/>
@@ -58,9 +58,9 @@
     <property name="java.class.version" value="55.0"/>
   </properties>
   <testcase name="test1[0]" classname="com.elisaverza.NewSerializeWriterTest" time="0.001"/>
-  <testcase name="test1[1]" classname="com.elisaverza.NewSerializeWriterTest" time="0.001"/>
+  <testcase name="test1[1]" classname="com.elisaverza.NewSerializeWriterTest" time="0"/>
   <testcase name="test1[2]" classname="com.elisaverza.NewSerializeWriterTest" time="0"/>
-  <testcase name="test1[3]" classname="com.elisaverza.NewSerializeWriterTest" time="0.001"/>
+  <testcase name="test1[3]" classname="com.elisaverza.NewSerializeWriterTest" time="0"/>
   <testcase name="test1[4]" classname="com.elisaverza.NewSerializeWriterTest" time="0"/>
-  <testcase name="test1[5]" classname="com.elisaverza.NewSerializeWriterTest" time="0.001"/>
+  <testcase name="test1[5]" classname="com.elisaverza.NewSerializeWriterTest" time="0"/>
 </testsuite>
